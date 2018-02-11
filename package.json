@@ -1,0 +1,29 @@
+{
+  "name": "personallibraryapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladyslav120604/PersonalLibraryApp.git"
+  },
+  "author": "Sergeev Vladyslav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladyslav120604/PersonalLibraryApp/issues"
+  },
+  "homepage": "https://github.com/Vladyslav120604/PersonalLibraryApp#readme",
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.1.0",
+    "gulp-jsvalidate": "^4.0.0",
+    "gulp-less": "^3.4.0",
+    "less": "^2.7.3",
+    "wiredep": "^4.0.0"
+  }
+}

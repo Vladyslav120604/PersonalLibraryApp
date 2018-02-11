@@ -1,0 +1,100 @@
+@yellow: #f4e88b;
+@gray: #e1dbdb;
+@darkGray: #5f5b5c;
+
+body{
+	background: ;
+}
+
+nav{
+	background: #333030;
+	#logOut{
+		margin: 0 0 0 25px;
+		border-radius:25px;
+		background: none;
+		border: 2px solid @gray;
+		color: @gray;
+		&:hover{
+			background: @gray;
+			color: black;
+		}
+	}
+}
+
+
+.email{
+	color:@yellow;
+}
+
+
+.books{
+	position:relative;
+	padding: 45px;
+	height:1000px;
+	background:#8b8687;
+	
+	#addNewBook{
+		color: @yellow;
+		font-size: 100px;
+		text-align: center;
+		line-height: 200px;
+		background: @darkGray;
+		height: 200px;
+	}
+
+	.book{
+		position:relative;
+		text-align:center;
+		width: px;
+		height: 200px;
+		background: @darkGray;
+		margin:0 0 40px 0;
+	}
+
+	.nameOfBook{
+		font-size:20px;
+		color: darken(@yellow, 10%);
+		background: #aea9aa;
+		height: 60px;
+		line-height:60px;
+		text-align: center;
+		position: absolute;
+		bottom:0;
+		right:0;
+		left:0;
+	}
+}
+
+.options{
+	padding:40px;
+	background: #a19d9d;
+}
+
+.form-control{
+	background: none;
+	border: none;
+	border-bottom: 2px solid @gray;
+	border-radius: 0;
+}
+
+label{
+	color: @yellow;
+}
+
+.form-control:focus {
+	background: none;
+	box-shadow:none;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.form-control::placeholder {
+  color: @gray;
+}
+
+.opacity(@val) {
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=@val);
+    -moz-opacity: @val/100;
+    -khtml-opacity: @val/100;
+    opacity: @val/100;
+}

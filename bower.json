@@ -1,0 +1,23 @@
+{
+  "name": "personallibraryapp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Sergeev Vladyslav"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Vladyslav120604/PersonalLibraryApp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.7",
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^5.0.6"
+  }
+}

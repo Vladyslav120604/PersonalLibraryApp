@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+	<!-- endbower -->
+</head>
+<body >
+	<nav class="navbar navbar-toggleable-md navbar-dark">
+	    <a class="navbar-brand" href="#">
+	      MyLib
+	    </a>
+	    <div>
+	      <span class="email">serheyev_vladyslav@gymnasium9.kr.ua</span>
+	      <button class="btn" id='logOut' type="button">Log out</button>
+	    </div>
+	  </nav>
+	  <div class="container-fluid">
+	  <div class="row">
+	    <div class="col-md-9 books">
+	      <div class="">
+	        <div class="row">
+	          <div class="col-md-4">
+	            <div id='addNewBook' class="book">
+	              <?xml version="1.0"?>
+	              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve" width="100px" height="100px"><g><polygon points="42,19 23,19 23,0 19,0 19,19 0,19 0,23 19,23 19,42 23,42 23,23 42,23 " data-original="#000000" class="active-path" data-old_color="#f4e88b" fill="#f4e88b"/></g> </svg>
+	            </div>
+	          </div>
+	          <div class="col-md-4">
+	            <div class="book">
+	              <div class="rating"></div>
+	              <div class="nameOfBook">Harry Potter</div>           
+	            </div>
+	          </div>
+	          <div class="col-md-4">
+	            <div class="book">
+	              <div class="nameOfBook">
+	                <div class="rating"></div>
+	                Zero to one
+	              </div>              
+	            </div>
+	          </div>
+	        </div>
+	        
+
+	      </div>
+	    </div>
+	    <div class="col-md-3 options">
+	      <div class="form-group">
+	          <label for="exampleInputEmail1">Search</label>
+	          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+	      </div>
+	      <div class="form-group">
+	          <label for="exampleInputEmail1">Sort By</label>
+	          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+	      </div>
+	      <div class="form-group">
+	          <label for="exampleInputEmail1">Paginate amount</label>
+	          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+	      </div>
+	    </div>
+	  </div>
+	  </div>
+	<div>
+  	<!-- bower:js -->
+  	<script src='js/index.js'></script>
+  	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+ 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	<!-- endbower -->
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+	</div>
+
+	
+</body>
+</html>
+

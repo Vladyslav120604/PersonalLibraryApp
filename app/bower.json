@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "homepage": "https://github.com/Vladyslav120604/PersonalLibraryApp",
+  "authors": [
+    "Vladyslav120604 <serheyev_vladyslav@gymnasium9.kr.ua>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.7",
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^5.0.6",
+    "bower": "*",
+    "install": "^1.0.4"
+  }
+}
