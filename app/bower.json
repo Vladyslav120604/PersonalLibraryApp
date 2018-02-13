@@ -20,6 +20,6 @@
     "bootstrap": "^4.0.0",
     "font-awesome": "^5.0.6",
     "bower": "*",
-    "install": "^1.0.4"
+    "install": "^1.0.4",
   }
 }

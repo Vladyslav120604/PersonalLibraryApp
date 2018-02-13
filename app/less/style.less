@@ -30,7 +30,7 @@ nav{
 .books{
 	position:relative;
 	padding: 45px;
-	height:1000px;
+	height:auto;
 	background:#8b8687;
 	
 	#addNewBook{
@@ -55,7 +55,6 @@ nav{
 		font-size:20px;
 		color: darken(@yellow, 10%);
 		background: #aea9aa;
-		height: 60px;
 		line-height:60px;
 		text-align: center;
 		position: absolute;
@@ -66,11 +65,13 @@ nav{
 }
 
 .options{
+	color: white;
 	padding:40px;
 	background: #a19d9d;
 }
 
 .form-control{
+	color: @gray;
 	background: none;
 	border: none;
 	border-bottom: 2px solid @gray;
@@ -82,6 +83,8 @@ label{
 }
 
 .form-control:focus {
+	color: @gray;
+
 	background: none;
 	box-shadow:none;
     outline: 0;
@@ -97,4 +100,52 @@ label{
     -moz-opacity: @val/100;
     -khtml-opacity: @val/100;
     opacity: @val/100;
+}
+
+option{
+	color: @gray;
+	background: @darkGray;
+}
+
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  
+  .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .05em .05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+
+    &.filled {
+      color: #fd0;
+    }
+  }
+
+  &.readonly .star.filled {
+    color: #666;
+  }
+}
+
+.fa-star-o {
+    color: #FF7700;
+}
+.fa-star {
+    color: #FFDD00;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #FF7700;
+}
+.isReadonly {
+    .fa-star-o {
+        color: #000000;
+    }
+    .fa-star {
+        color: #DCDCDC;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000000;
+    }
 }
