@@ -79,7 +79,7 @@ gulp.task("css-gsub", () => {
 gulp.task('bower', function () {
   return gulp.src('app/index.html')
     .pipe(wiredep({
-      directory: 'bower_components'//,
+      directory: 'app/bower_components'//,
       //goes: 'here'
     }))
     .pipe(gulp.dest('app'));

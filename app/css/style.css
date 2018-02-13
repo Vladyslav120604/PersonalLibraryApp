@@ -15,10 +15,14 @@ nav #logOut:hover {
   background: #e1dbdb;
   color: black;
 }
+#logo {
+  color: #e1dbdb;
+}
 .email {
   color: #f4e88b;
 }
 .books {
+  min-height: 100%;
   position: relative;
   padding: 45px;
   height: auto;
@@ -33,6 +37,7 @@ nav #logOut:hover {
   height: 200px;
 }
 .books .book {
+  padding: 15px;
   position: relative;
   text-align: center;
   width: px;
@@ -51,7 +56,11 @@ nav #logOut:hover {
   right: 0;
   left: 0;
 }
+.books .rating {
+  float: right;
+}
 .options {
+  width: 1000px;
   color: white;
   padding: 40px;
   background: #a19d9d;
@@ -79,24 +88,4 @@ label {
 option {
   color: #e1dbdb;
   background: #5f5b5c;
-}
-.star-rating {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-.star-rating .star {
-  padding: 1px;
-  color: #ddd;
-  font-size: 20px;
-  text-shadow: .05em .05em #aaa;
-  list-style-type: none;
-  display: inline-block;
-  cursor: pointer;
-}
-.star-rating .star.filled {
-  color: #fd0;
-}
-.star-rating.readonly .star.filled {
-  color: #666;
 }

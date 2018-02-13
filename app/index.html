@@ -4,15 +4,20 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+	
+
 	<!-- bower:css -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css">
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+	<link rel="stylesheet" href="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.css" />
 	<!-- endbower -->
+
 </head>
 <body ng-controller='myCtrl'>
 	<nav class="navbar navbar-toggleable-md navbar-dark">
-	    <a class="navbar-brand" href="#">
+	    <a class="navbar-brand" id='logo' href="#">
 	      MyLib
 	    </a>
 	    <div>
@@ -31,9 +36,12 @@
 	              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve" width="100px" height="100px"><g><polygon points="42,19 23,19 23,0 19,0 19,19 0,19 0,23 19,23 19,42 23,42 23,23 42,23 " data-original="#000000" class="active-path" data-old_color="#f4e88b" fill="#f4e88b"/></g> </svg>
 	            </div>
 	          </div>
-	          <div class="col-md-4" ng-repeat='book in books | filter: searchText | orderBy: sortText | limitTo:pageSize | filter: myOrderBy'>
+	          <div class="col-md-4" ng-repeat='book in books | filter: searchText | orderBy: sortText | limitTo:pageSize | filter: myOrderBy:true'>
 	            <div class="book">
-	              <div class="rating"></div>
+	              <div class="rating">
+	              	<jk-rating-stars max-rating="5" rating="book.rate" style="display:{{book.rateDisplay}}" read-only="true" on-rating="ctrl.onRating(rating)" >
+					</jk-rating-stars>
+				  </div>
 	              <div class="nameOfBook">{{book.name}}</div>           
 	            </div>
 	          </div>
@@ -51,7 +59,7 @@
 	          <label for="exampleInputEmail1">Sort By</label>
 	          <select ng-model="sortText" id="pageSize" class="form-control">
 			    <option value="" selected>Select criteria</option>
-			    <option value="rate">Rate</option>
+			    <option value="-rate">Rate</option>
 			    <option value="name">Name</option>
 			    <option value="author">Author</option>
 			    <option value="date">Date</option>
@@ -61,54 +69,33 @@
 	          <label for="exampleInputEmail1">Paginate amount</label>
      		  <select ng-model="pageSize" id="pageSize" class="form-control">
 			    <option value="" selected>Select amount</option>
-			    <option value="10">10</option>
+			    
 			    <option value="20">20</option>
 			    <option value="50">50</option>
+			    <option value="10">10</option>
 			</select>
 	      </div>
 				<div class="radio">
-  					<label><input type="radio" ng-click="orderByMe('')" name="optradio">All</label>
+  					<label><input type="radio" ng-click="orderByMe()" name="optradio">All</label>
 				</div>
 				<div class="radio">
 		  			<label><input type="radio" ng-click="orderByMe('read')" name="optradio">Read</label>
 				</div>
 				<div class="radio">
-  					<label><input type="radio" ng-click="orderByMe('unread')"' name="optradio">Unread</label>
+  					<label><input type="radio" ng-click="orderByMe('unread')" name="optradio">Unread</label>
 				</div>
 	    </div>
 	  </div>
 	  </div>
 	<div>
-
+	
+	<script src='js/index.js'></script>
   	<!-- bower:js -->
-  	<script src='js/index.js'></script>
+  	<script src="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+  	<script src="bower_components/jquery/dist/jquery.js"></script>
   	
   	<!-- endbower -->
 
-
-
-	 
-
-
-
-<div>
-        <div>
-            <angular-star-rating max="maxValue" value='ratingValue'  hover='changeOnHover' is-readonly='isReadonly'></angular-star-rating>
-        </div>
-        <div>
-            <p>Readonly:
-                <input type='checkbox' ng-model='isReadonly' /> {{isReadonly}}
-            </p>
-            <p>Rating value change on mouse hover: 
-                <input type='checkbox' ng-model='changeOnHover' /> {{changeOnHover}}
-            </p>
-            <p>Your rating value: {{ratingValue}} / {{maxValue}}</p>
-            <p>Max value: 
-                <input ng-model="maxValue" type="number" min="5" max="100"> (5~100 for test)
-             </p>
-        </div>
-    </div>
-	
 </body>
 </html>
 

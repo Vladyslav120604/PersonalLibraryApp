@@ -21,6 +21,9 @@ nav{
 	}
 }
 
+#logo{
+	color:@gray;
+}
 
 .email{
 	color:@yellow;
@@ -28,6 +31,7 @@ nav{
 
 
 .books{
+	min-height: 100%;
 	position:relative;
 	padding: 45px;
 	height:auto;
@@ -43,6 +47,7 @@ nav{
 	}
 
 	.book{
+		padding: 15px;
 		position:relative;
 		text-align:center;
 		width: px;
@@ -62,9 +67,14 @@ nav{
 		right:0;
 		left:0;
 	}
+
+	.rating{
+		float: right;
+	}
 }
 
 .options{
+	width: 1000px;
 	color: white;
 	padding:40px;
 	background: #a19d9d;
@@ -107,45 +117,3 @@ option{
 	background: @darkGray;
 }
 
-.star-rating {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  
-  .star {
-    padding: 1px;
-    color: #ddd;
-    font-size: 20px;
-    text-shadow: .05em .05em #aaa;
-    list-style-type: none;
-    display: inline-block;
-    cursor: pointer;
-
-    &.filled {
-      color: #fd0;
-    }
-  }
-
-  &.readonly .star.filled {
-    color: #666;
-  }
-}
-
-.fa-star-o {
-    color: #FF7700;
-}
-.fa-star {
-    color: #FFDD00;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #FF7700;
-}
-.isReadonly {
-    .fa-star-o {
-        color: #000000;
-    }
-    .fa-star {
-        color: #DCDCDC;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: #000000;
-    }
-}

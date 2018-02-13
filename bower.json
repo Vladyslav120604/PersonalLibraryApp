@@ -15,9 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.6.7",
+   "angular": "1.6.7",
     "jquery": "^3.3.1",
     "bootstrap": "^4.0.0",
-    "font-awesome": "^5.0.6"
+    "font-awesome": "^5.0.6",
+    "bower": "*",
+    "install": "^1.0.4",
+    "angular-jk-rating-stars": "^1.0.8"
   }
 }
