@@ -5,7 +5,7 @@ nav {
   background: #333030;
 }
 nav #logOut {
-  margin: 0 0 0 25px;
+  margin: 0;
   border-radius: 25px;
   background: none;
   border: 2px solid #e1dbdb;
@@ -20,10 +20,10 @@ nav #logOut:hover {
 }
 .email {
   color: #f4e88b;
+  margin-right: 25px;
 }
 .books {
-  min-height: 100%;
-  position: relative;
+  min-height: 100vh;
   padding: 45px;
   height: auto;
   background: #8b8687;
