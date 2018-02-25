@@ -45,6 +45,14 @@ nav #logOut:hover {
   background: #5f5b5c;
   margin: 0 0 40px 0;
 }
+.books .book:hover {
+  cursor: pointer;
+}
+.books img {
+  height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
 .books .nameOfBook {
   font-size: 20px;
   color: #f0df5c;
@@ -57,7 +65,13 @@ nav #logOut:hover {
   left: 0;
 }
 .books .rating {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   float: right;
+}
+#comand {
+  display: block;
 }
 .options {
   width: 1000px;
@@ -88,4 +102,45 @@ label {
 option {
   color: #e1dbdb;
   background: #5f5b5c;
+}
+.jk-rating-stars-container .button .material-icons {
+  font-size: 14px;
+}
+.setRate .button .material-icons {
+  font-size: 30px;
+}
+.setRate {
+  margin: 15px 0;
+}
+.submit {
+  margin: 0;
+  border-radius: 25px;
+  background: none;
+  border: 2px solid #f4e88b;
+  color: #f4e88b;
+}
+.submit:hover {
+  background: #f4e88b;
+  color: black;
+}
+.cancel {
+  margin: 0;
+  border-radius: 25px;
+  background: none;
+  border: 2px solid #e1dbdb;
+  color: #e1dbdb;
+}
+.cancel:hover {
+  background: #e1dbdb;
+  color: black;
+}
+.has-error {
+  color: #cc1616;
+}
+.has-error input {
+  border-bottom: 2px solid #cc1616;
+  color: #cc1616;
+}
+.has-error .form-control::placeholder {
+  color: #cc1616;
 }

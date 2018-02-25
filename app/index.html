@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Document</title>
+	<title>MyLib</title>
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
@@ -16,13 +16,13 @@
 	<!-- endbower -->
 
 </head>
-<body ng-controller='myCtrl'>
+<body ng-controller='myCtrl' ng-factory='myFactory'>
 	<nav class="navbar navbar-toggleable-md navbar-dark">
 	    <a class="navbar-brand" id='logo' href="#">
 	      MyLib
 	    </a>
 	    <div>
-	      <span class="email">serheyev_vladyslav@gymnasium9.kr.ua</span>
+	      <span class="email">test@gmail.com</span>
 	      <button class="btn" id='logOut' type="button">Log out</button>
 	    </div>
 	  </nav>
@@ -32,28 +32,28 @@
 	    <div class="col-md-9 books">
 	        <div class="row">
 	          <div class="col-md-4">
-	            <div id='addNewBook' class="book">
+	            <div id='addNewBook' ng-click='showForm()' class="book">
 	              <?xml version="1.0"?>
 	              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve" width="100px" height="100px"><g><polygon points="42,19 23,19 23,0 19,0 19,19 0,19 0,23 19,23 19,42 23,42 23,23 42,23 " data-original="#000000" class="active-path" data-old_color="#f4e88b" fill="#f4e88b"/></g> </svg>
 	            </div>
 	          </div>
 	          <div class="col-md-4" ng-repeat='book in books | filter: searchText | orderBy: sortText | limitTo:pageSize | filter: myOrderBy:true'>
-	            <div class="book">
+	            <div class="book" ng-click="showEditBookForm(book, true)">
+	            	<img ng-src="{{book.bgSrc}}" alt="">
 	              <div class="rating">
 	              	<jk-rating-stars max-rating="5" rating="book.rate" style="display:{{book.rateDisplay}}" read-only="true" on-rating="ctrl.onRating(rating)" >
 					</jk-rating-stars>
 				  </div>
-	              <div class="nameOfBook">{{book.name}}</div>           
+	              <div class="nameOfBook">{{book.name}}</div>
+
 	            </div>
 	          </div>
 
-	        
-
 	      </div>
 	    </div>
-	    <div class="col-md-3 options">
+	    <div class="col-md-3 options" id='comand' ng-init='val = 3' ng-show='val == 3'>
 	      <div class="form-group">
-	          <label for="exampleInputEmail1">Search</label>
+	          <label for="searchInput">Search</label>
 	          <input type="text" class="form-control" id="searchInput" aria-describedby="emailHelp" placeholder="e.g.:Harry Potter" ng-model='searchText.name'>
 	      </div>
 	      <div class="form-group">
@@ -67,7 +67,7 @@
 			</select>
 	      </div>
 	      <div class="form-group">
-	          <label for="exampleInputEmail1">Paginate amount</label>
+	          <label for="pageSize">Paginate amount</label>
      		  <select ng-model="pageSize" id="pageSize" class="form-control">
 			    <option value="" selected>Select amount</option>
 			    
@@ -86,6 +86,68 @@
   					<label><input type="radio" ng-click="orderByMe('unread')" name="optradio">Unread</label>
 				</div>
 	    </div>
+
+	    <div class="col-md-3 options" ng-show='val == 1'>
+	    	<form class="form-horizontal" role="form" name='addForm' ng-submit="addRow()" novalidate required>
+				<div class="form-group" ng-class="{ 'has-error' : addForm.name.$invalid && !addForm.name.$pristine }" >
+					<label class="">Book name</label>
+					<input type="text" name="name" class="form-control" placeholder='e.g.: Alice in wonderland' ng-model="name" ng-minlength="3" required>
+            		<p ng-show="addForm.name.$error.minlength" class="help-block">Book name is too short</p>
+				</div>
+
+				<div class="form-group"  ng-class="{ 'has-error' : addForm.author.$invalid && !addForm.author.$pristine }">
+					<label class="control-label">Author</label>
+					<input type="text" placeholder='e.g.: Lewis Carroll' class="form-control" name="author" ng-model="author" required/>
+				</div>
+				
+				<label>Rate</label>
+				<jk-rating-stars rating="rate" class='setRate' ng-model='rate'></jk-rating-stars>
+
+				<div class="form-group" ng-class="{ 'has-error' : addForm.bgSrc.$invalid && !addForm.bgSrc.$pristine }">
+					<label class="">Background image</label>
+					<input type="text" ng-pattern='imgPattern' placeholder='e.g.: https://upload.wikimedia.org/image.png' class="form-control" name="bgSrc" ng-model="bgSrc" />
+					<p ng-show="addForm.bgSrc.$invalid" class="help-block">Invalid source</p>
+				</div>
+
+				<div class="form-group">								
+					<input type="submit" value="Save" ng-disabled="addForm.$invalid" class="btn submit"/>
+					<button class="btn cancel" ng-click='cancel()' type='reset'>Cancel</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-md-3 options" ng-show='val == 2'>
+	    	<form class="form-horizontal" role="form" ng-model='editForm' name='editForm' ng-submit="editBook()">
+				<div class="form-group" ng-class="{ 'has-error' : editForm.name.$invalid && !editForm.name.$pristine }" >
+					<label class="">Book name</label>
+					<input type="text" name="name" class="form-control" placeholder='e.g.: Alice in wonderland' ng-model="name" ng-minlength="3">
+            		<p ng-show="editForm.name.$error.minlength" class="help-block">Book name is too short.</p>
+				</div>
+
+				<div class="form-group" ng-class="{ 'has-error' : editForm.author.$invalid && !editForm.author.$pristine }">
+					<label class="control-label">Author</label>
+					<input type="text" class="form-control" name="author" ng-model="author" />
+				</div>
+
+				<label>Rate</label>
+				<jk-rating-stars rating="rate" class='setRate' ng-model='rate'></jk-rating-stars>
+
+
+				<div class="form-group" ng-class="{ 'has-error' : editForm.bgSrc.$invalid && !editForm.bgSrc.$pristine }">
+					<label class="">Rate</label>
+					<input type="text" ng-pattern='imgPattern' placeholder='e.g.: https://upload.wikimedia.org/image.png' class="form-control" name="bgSrc" ng-model="bgSrc" />
+					<p ng-show="editForm.bgSrc.$invalid" class="help-block">Invalid source</p>
+				</div>
+
+				<div class="form-group">								
+					<input type="submit" value="Save" ng-disabled="editForm.$invalid" class="btn submit"/>
+					<button class="btn cancel" ng-click='cancel()' type='reset' >Cancel</button>
+				</div>
+				</form>
+			</div>
+		</div>
+
+	    </div>
 	  </div>
 	  </div>
 	<div>
@@ -96,7 +158,6 @@
   	<script src="bower_components/jquery/dist/jquery.js"></script>
   	
   	<!-- endbower -->
-
 </body>
 </html>
 

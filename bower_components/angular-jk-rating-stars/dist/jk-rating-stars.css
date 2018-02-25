@@ -11,3 +11,7 @@
 
 .jk-rating-stars-container[read-only="true"] .button {
   cursor: default; }
+
+.jk-rating-stars-container{
+	float:left;
+}

@@ -9,17 +9,10 @@ body{
 nav{
 	background: #333030;
 	#logOut{
-		margin: 0;
-		border-radius:25px;
-		background: none;
-		border: 2px solid @gray;
-		color: @gray;
-		&:hover{
-			background: @gray;
-			color: black;
-		}
+		.btn(@gray, @gray, @gray, black);
 	}
-}
+	}
+
 
 #logo{
 	color:@gray;
@@ -47,6 +40,7 @@ nav{
 	}
 
 	.book{
+		text-align: center;	
 		padding: 15px;
 		position:relative;
 		text-align:center;
@@ -54,6 +48,16 @@ nav{
 		height: 200px;
 		background: @darkGray;
 		margin:0 0 40px 0;
+		&:hover{
+			cursor: pointer;
+		};
+	}
+	
+	img{
+		height: 100%;
+		max-width: 100%;
+		margin: 0 auto;
+		
 	}
 
 	.nameOfBook{
@@ -69,10 +73,17 @@ nav{
 	}
 
 	.rating{
+		position: absolute;
+		top: 15px;
+		right: 15px;
 		float: right;
 	}
 }
 
+
+#comand{
+	display: block;
+}
 
 .options{
 	width: 1000px;
@@ -118,3 +129,46 @@ option{
 	background: @darkGray;
 }
 
+.jk-rating-stars-container .button .material-icons {
+	font-size: 14px;
+}
+
+.setRate .button .material-icons {
+	font-size:30px;
+}
+
+.setRate{
+	margin:15px 0;
+}
+
+.btn(@borderColor, @background, @fontColor, @fontColorHover){
+	margin: 0;
+	border-radius:25px;
+	background: none;
+	border: 2px solid @borderColor;
+	color: @fontColor;
+	&:hover{
+		background: @background;
+		color: @fontColorHover;
+	}	
+
+}
+
+.submit{
+	.btn(@yellow, @yellow, @yellow, black);
+}
+
+.cancel{
+	.btn(@gray, @gray, @gray, black);
+}
+
+.has-error{
+	color: #cc1616;
+	input{
+		border-bottom: 2px solid #cc1616;
+		color: #cc1616;
+	}
+	.form-control::placeholder {
+  		color: #cc1616;
+	}
+}
