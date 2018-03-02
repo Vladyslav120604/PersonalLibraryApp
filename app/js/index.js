@@ -1,4 +1,14 @@
-var app = angular.module("myApp", ['jkAngularRatingStars']);
+var config = {
+		    apiKey: "AIzaSyCDQ5cCDHyssXBH3hgAlFLrpiQKarYlxJM",
+		    authDomain: "mylibapp-2fef8.firebaseapp.com",
+		    databaseURL: "https://mylibapp-2fef8.firebaseio.com",
+		    projectId: "mylibapp-2fef8",
+		    storageBucket: "mylibapp-2fef8.appspot.com",
+		    messagingSenderId: "568605790913"
+		  };
+firebase.initializeApp(config);
+
+var app = angular.module("myApp", ['firebase']);
 
 app.factory("myFactory", function(){
 	var methods = {}
@@ -195,8 +205,26 @@ app.factory("myFactory", function(){
 			'bgSrc': 'http://bipbap.ru/wp-content/uploads/2017/09/81736420_4601429_milii_kot_2012.jpg' 
 		},
 	];
-	methods.getBook = function(name){
-		console.log('hello ' + name + ' !');
+
+	methods.getBook = function(book){
+		var id = book['id'];
+		console.log(id);
+		for (var i = 0; i < methods.books.length; i++) {
+			if(id == methods.books[i]['id']){
+				return  methods.books[i];
+			}
+		}
+	},
+
+	methods.updateBook = function(currentBook, updatedBook){
+		currentBook.name = updatedBook.name;
+		currentBook.author = updatedBook.author;
+		currentBook.rate = updatedBook.rate;
+		currentBook.bgSrc = updatedBook.bgSrc;
+	},
+
+	methods.saveBook = function(newBook){
+		methods.books.unshift({ 'name':newBook.name, 'author': newBook.author, 'rate':newBook.rate, 'bgSrc': newBook.bgSrc })
 	}
 
 	
@@ -205,82 +233,127 @@ app.factory("myFactory", function(){
 
 
 
-app.controller("myCtrl", function(myFactory ,$scope) {
-    myFactory.getBook('Vlad');
-    
-    $scope.books = myFactory.books;
+app.controller("myCtrl", function(myFactory ,$scope, $firebaseAuth, $firebaseObject, $firebaseArray) {
+    var rootRef =  firebase.database().ref().child('users');
+    var authObj = $firebaseAuth();
+    var ref = rootRef.child('AXOvEQCMXQOoMfLYoa9NpfVCOto2/books');
+    var tt = $firebaseObject(ref);
+    console.log(tt);
+    $scope.books = $firebaseArray(ref);
+    console.log(tt);
 
-	$scope.orderByMe = function(x) {
-	        $scope.myOrderBy = x;
-	}
+		  firebase.database().ref('users/' + 'AXOvEQCMXQOoMfLYoa9NpfVCOto2/' + 'books/' + 5).set({
+			    id: Math.floor(Math.random() * (1000 - 1) + 1),
+				name: 'hello',
+				author: 'Jack London',
+				date: '30.01.16',
+				rate: 5,
+				rateDisplay: 'block',
+				notes: 'read',
+				bgSrc: 'https://goo.gl/4hpnsX'
+		  });
 
 
-	$scope.addRow = function(){	
-	console.log(1);	
-		$scope.books.push({ 'name':$scope.name, 'author': $scope.author, 'rate':$scope.rate, 'bgSrc': $scope.bgSrc });
+	$scope.saveNewBook = function(){	
+			
+		/*$scope.books.unshift({ 'name':$scope.name, 'author': $scope.author, 'rate':$scope.rate, 'bgSrc': $scope.bgSrc });
 		console.log($scope.name);
-		$scope.clearForm();
+		$scope.clearForm();*/
+		var newBook = $scope.getDataFromInputs();
+		myFactory.saveBook(newBook);
+		console.log(newBook);
 	};
 
-	$scope.showForm = function(){
-		$scope.val = 1;
+	$scope.showForm = function(val){
+		$scope.val = val;
 	}
 
+	$scope.closeForm = function(){
+		$scope.val = 3;
+	}
 
-
-  $scope.showEditBookForm = function(book, val){
-  		$scope.val = 2;
-  		$scope.book = book;
-        $scope.name = book.name;
-        console.log($scope.name);
-        $scope.author = book.author;
-        $scope.rate = book.rate;
-        $scope.bgSrc = book.bgSrc;
-        $scope.id = book.id;
-        $scope.bgSrc = book.bgSrc;
-        //$scope.currentBook = $scope.find(book.id);
-        //$scope.Month = item.budget.Month;
-        
-  }
-
-  $scope.saveBook = function(){
-  		console.log($scope.currentBook);
-  		$scope.currentBook.name = 454
-  }
-
-  $scope.cancel = function(){
-  		 $scope.clearForm();
-  }
-
-  $scope.clearForm = function() {
-  		console.log(1);
+	$scope.clearForm = function() {
+  		console.log('hellllllllllllo');
   		$scope.name='';
 		$scope.author='';
 		$scope.rate='';
-
-		$scope.val = 3;
+		$scope.bgSrc='';
 		
 
-  }
+  	}
 
-  $scope.editBook = function(){
-  	console.log(1);
-  		var id = $scope.id;
-  		for (var i = 0; i < $scope.books.length; i++) {
-  			if($scope.books[i].id === id){
-  				$scope.books[i].name = $scope.name;
-  				$scope.books[i].author = $scope.author;
-  				$scope.books[i].rate = $scope.rate;
-  				$scope.books[i].bgSrc = $scope.bgSrc;
-  			}
-  		}
+  	$scope.cancel = function(){
+  		 $scope.clearForm();
+  		 $scope.closeFrom();
+  	}
+
+
+//    edit book    //
+
+
+	$scope.showDataInInputs = function(book){
+		$scope.name = book.name;
+		$scope.author = book.author;
+		$scope.rate = book.rate;
+		$scope.bgSrc = book.bgSrc;
+	}
+
+	$scope.getDataFromInputs = function(book){
+		
+		var updatedBook = {
+			name: $scope.name,
+			rate: $scope.rate,
+			author: $scope.author,
+			bgSrc: $scope.bgSrc
+		};
+		return updatedBook;
+	}
+
+  	$scope.editBook = function(book, val){
+  		$scope.showForm(2);
+  		$scope.currentBook = myFactory.getBook(book);
+  		$scope.showDataInInputs(book);        
+  	}
+
+  	$scope.updateBook = function(){
+  		var updatedBook = $scope.getDataFromInputs($scope.currentBook);
+  		myFactory.updateBook($scope.currentBook, updatedBook);
   		$scope.clearForm();
-  }
+  		$scope.closeFrom();
+  	}
 
 
-  $scope.imgPattern = /(http)s?:?(\/\/[^"']*)/;
+//    add new book    //
+	$scope.addBook = function(){
+		$scope.showForm(1);
+		$scope.clearForm();
+		var newBook = $scope.getDataFromInputs();
+	}
 
+  	$scope.imgPattern = /(http)s?:?(\/\/[^"']*)/;
 
+  	$scope.orderByMe = function(x) {
+	        $scope.myOrderBy = x;
+	}
+
+	
+
+	authObj.$onAuthStateChanged(function(user) {
+		console.log(user);
+  		if (user) {
+  		$scope.currentEmail = user.email; // User is signed in!
+	    	// Get profile pic and user's name from the Firebase user object.
+	    	
+		     // Only change these two lines!
+		}
+		else{
+			window.location.replace("./index.html");
+		}
+	})
+
+	$scope.logOut = function(){
+		authObj.$signOut();
+	}
 });
 
 

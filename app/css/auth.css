@@ -1,0 +1,71 @@
+body {
+  background: #8b8687;
+}
+nav {
+  background: #333030;
+}
+nav #logOut {
+  border-radius: 25px;
+  background: none;
+  border: 2px solid #e1dbdb;
+  color: #e1dbdb;
+}
+nav #logOut:hover {
+  background: #e1dbdb;
+  color: black;
+}
+#logo {
+  color: #e1dbdb;
+}
+.email {
+  color: #f4e88b;
+  margin-right: 25px;
+}
+label {
+  color: #f4e88b;
+}
+.auth {
+  padding: 30px;
+  width: 350px;
+  background: #a19d9d;
+}
+.form-control:focus {
+  color: #e1dbdb;
+  background: none;
+  box-shadow: none;
+  outline: 0;
+  outline-offset: 0;
+}
+.form-control::placeholder {
+  color: #e1dbdb;
+}
+.form-control {
+  color: #e1dbdb;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #e1dbdb;
+  border-radius: 0;
+}
+.signUp {
+  margin-top: 40px;
+  margin: 20px 10px 0 50px;
+  border-radius: 25px;
+  background: none;
+  border: 2px solid #f4e88b;
+  color: #f4e88b;
+}
+.signUp:hover {
+  background: #f4e88b;
+  color: black;
+}
+.logIn {
+  margin: 20px 50px 0 10px;
+  border-radius: 25px;
+  background: none;
+  border: 2px solid #e1dbdb;
+  color: #e1dbdb;
+}
+.logIn:hover {
+  background: #e1dbdb;
+  color: black;
+}

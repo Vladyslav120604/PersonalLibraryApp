@@ -1,0 +1,82 @@
+@yellow: #f4e88b;
+@gray: #e1dbdb;
+@darkGray: #5f5b5c;
+@authColor: #a19d9d;
+
+body{
+	background: #8b8687;
+}
+
+nav{
+	background: #333030;
+	#logOut{
+		.btn(@gray, @gray, @gray, black);
+	}
+	}
+
+
+#logo{
+	color:@gray;
+}
+
+.email{
+	color:@yellow;
+	margin-right: 25px;
+}
+
+.btn(@borderColor, @background, @fontColor, @fontColorHover){
+	border-radius:25px;
+	background: none;
+	border: 2px solid @borderColor;
+	color: @fontColor;
+	&:hover{
+		background: @background;
+		color: @fontColorHover;
+	}	
+
+}
+
+label{
+	color:@yellow;
+}
+
+.auth{
+	padding: 30px;
+	width:350px;
+	background:@authColor;
+}
+
+.form-control:focus {
+	color: @gray;
+
+	background: none;
+	box-shadow:none;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.form-control::placeholder {
+  color: @gray;
+}
+
+
+
+.form-control{
+	color: @gray;
+	background: none;
+	border: none;
+	border-bottom: 2px solid @gray;
+	border-radius: 0;
+}
+
+.signUp{
+	margin-top:40px;
+	margin:20px 10px 0 50px;
+	.btn(@yellow, @yellow, @yellow, black);
+}
+
+.logIn{
+	margin:20px 50px 0 10px;
+	.btn(@gray, @gray, @gray, black);
+}
+

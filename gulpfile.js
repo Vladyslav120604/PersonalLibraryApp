@@ -19,6 +19,10 @@ gulp.task('less', function () {
     return gulp.src('app/less/style.less')
         .pipe(less())
         .pipe(gulp.dest('app/css'))
+        .pipe(browserSync.reload({stream: true})),
+        gulp.src('app/less/auth.less')
+        .pipe(less())
+        .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({stream: true}))
 });
 
@@ -88,7 +92,7 @@ gulp.task('bower', function () {
 gulp.task('watch',['browser-sync', 'less'], function(){
     gulp.watch('app/less/**.less', ['less']);
     gulp.watch('app/js/**.js', ['jsValidate']);
-    gulp.watch('app/index.html').on('change', browserSync.reload);
+    gulp.watch('app/*.html').on('change', browserSync.reload);
     gulp.watch('app/js/*.js', browserSync.reload);
     gulp.watch('app/bower.json', ['bower']);
     
